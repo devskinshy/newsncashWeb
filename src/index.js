@@ -14,15 +14,20 @@ import store from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
 
 import App from './App';
+import RNListener from './components/RNListener';
+
+//React.StrictMode
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <App />
+        <RNListener>
+          <App />
+        </RNListener>
       </BrowserRouter>
     </ReduxProvider>
-  </React.StrictMode>,
+  </>,
   document.getElementById('root')
 );
 
