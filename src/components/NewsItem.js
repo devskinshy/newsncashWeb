@@ -1,6 +1,7 @@
 import React from 'react';
 import {styled} from "@mui/material/styles";
 import {Box, Divider, Typography} from "@mui/material";
+import {RNSender} from "../utils/RNNetwork";
 
 const RootStyled = styled(Box)(({theme}) => ({
   display: 'flex',
@@ -29,23 +30,34 @@ const ImgStyled = styled('img')(({theme}) => ({
   objectFit: 'cover'
 }))
 
-const NewsItem = () => {
+const NewsItem = ({news}) => {
+  const {
+    tl,
+    nm,
+    pdate,
+    image_link,
+  } = news;
+
   return (
     <>
-      <RootStyled>
+      <RootStyled onClick={() => {RNSender('TEST', news)}}>
         <TextBoxStyled>
           <TitleStyled variant={'subtitle1'} noWrap>
-            123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123
+            {tl}
           </TitleStyled>
           <Box>
             <Typography variant={'caption'}>
-              세계신문 • 2시간 전 • 댓글 0
+              {nm} • {pdate}
             </Typography>
           </Box>
         </TextBoxStyled>
-        <ImgBoxStyled>
-          <ImgStyled src={'https://file.mk.co.kr/meet/neds/2022/04/image_readtop_2022_379366_16511323245025499.jpg'} alt={'news poster'} />
-        </ImgBoxStyled>
+        {
+          image_link && (
+            <ImgBoxStyled>
+              <ImgStyled src={image_link} alt={'news poster'} />
+            </ImgBoxStyled>
+          )
+        }
       </RootStyled>
       <Divider/>
     </>

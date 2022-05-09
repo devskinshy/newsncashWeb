@@ -11,8 +11,8 @@ const NewsList = ({list}) => {
   return (
     <RootStyled spacing={2}>
       {
-        list.map((news, index) => (
-          <NewsItem key={index} news={news}/>
+        list.map((news) => (
+          <NewsItem key={news.idsk} news={news}/>
         ))
       }
     </RootStyled>

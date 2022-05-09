@@ -1,22 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Container} from "@mui/material";
-import {useParams} from "react-router-dom";
-import NewsList from "../components/NewsList";
+import NewsListContainer from "../containers/NewsListContainer";
 
 const NewsListPage = () => {
-  const {category} = useParams();
-
-  useEffect(() => {
-    console.log(`create`)
-  }, []);
-
-  useEffect(() => {
-    console.log(`category`)
-  }, [category]);
-
   return (
     <Container disableGutters maxWidth={false}>
-      <NewsList list={[...Array(10)]} />
+      <NewsListContainer />
     </Container>
   );
 };

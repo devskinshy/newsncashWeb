@@ -1,4 +1,4 @@
-import {lazyTarget, removeTarget} from "../config";
+import {lazyTarget, removeTarget} from "../config/news";
 
 const convertNode = (content) => {
   const parser = new DOMParser();

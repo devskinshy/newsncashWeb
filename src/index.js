@@ -14,18 +14,14 @@ import store from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
 
 import App from './App';
-import RNListener from './components/RNListener';
 
 //React.StrictMode
-
 ReactDOM.render(
   <>
     <ReduxProvider store={store}>
-      <BrowserRouter>
-        <RNListener>
-          <App />
-        </RNListener>
-      </BrowserRouter>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </ReduxProvider>
   </>,
   document.getElementById('root')

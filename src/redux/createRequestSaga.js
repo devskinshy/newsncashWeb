@@ -20,7 +20,9 @@ const createRequestSaga = (type, request) => {
     yield put(startLoading(type));
 
     try {
-      const response = yield call(request, payload);
+      let response = yield call(request, payload);
+
+      if(response?.data?.r !== '000') { throw {response} }
 
       yield put(successAction(response.data));
     } catch (e) {
