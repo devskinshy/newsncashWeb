@@ -5,6 +5,8 @@ export const RNListener = (networking) => {
       ? JSON.parse(event.data)
       : event.data;
 
+    console.log(data)
+
     networking[type] && networking[type](data);
   };
 

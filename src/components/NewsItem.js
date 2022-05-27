@@ -38,9 +38,13 @@ const NewsItem = ({news}) => {
     image_link,
   } = news;
 
+  const onClick= () => {
+    RNSender('LIST_SELECT', news)
+  }
+
   return (
     <>
-      <RootStyled onClick={() => {RNSender('TEST', news)}}>
+      <RootStyled onClick={onClick}>
         <TextBoxStyled>
           <TitleStyled variant={'subtitle1'} noWrap>
             {tl}
