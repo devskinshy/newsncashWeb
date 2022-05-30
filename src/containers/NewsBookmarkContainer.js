@@ -4,12 +4,12 @@ import {useSelector} from "react-redux";
 import Loading from "../components/Loading";
 import Error from "../components/error/Error";
 
-const NewsListContainer = () => {
+const NewsBookmarkContainer = () => {
   const {init, list, error, loading} = useSelector(({news, loading}) => ({
-    init: news.list.init,
-    list: news.list.data,
+    init: news.bookmark.init,
+    list: news.bookmark.data,
     error: news.error,
-    loading: loading['news/INITIALIZE_LIST']
+    loading: loading['news/INITIALIZE_BOOKMARK']
   }));
 
   return (
@@ -19,4 +19,4 @@ const NewsListContainer = () => {
   )
 };
 
-export default NewsListContainer;
+export default NewsBookmarkContainer;

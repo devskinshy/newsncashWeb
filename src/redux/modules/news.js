@@ -1,54 +1,108 @@
 import {takeLatest} from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from "../createRequestSaga";
 import {createActions, handleActions} from "redux-actions";
-import {getNewsDetail, getNewsList} from "../../api/news";
+import {getNewsDetail, getNewsList, getNewsSearch} from "../../api/news";
 import produce from "immer";
 
 const initialState = {
-  list: null,
-  detail: null,
+  list: {
+    init: false,
+    data: []
+  },
+  search: {
+    keyword: '',
+    data: []
+  },
+  bookmark: {
+    init: false,
+    data: []
+  },
+  detail: {
+    init: false,
+    data: null
+  },
   error: null
 };
 
 const [INITIALIZE_LIST, INITIALIZE_LIST_SUCCESS, INITIALIZE_LIST_FAILURE] = createRequestActionTypes('news/INITIALIZE_LIST');
+const [GET_SEARCH, GET_SEARCH_SUCCESS, GET_SEARCH_FAILURE] = createRequestActionTypes('news/GET_SEARCH');
+const [INITIALIZE_BOOKMARK, INITIALIZE_BOOKMARK_SUCCESS, INITIALIZE_BOOKMARK_FAILURE] = createRequestActionTypes('news/INITIALIZE_BOOKMARK');
 const [INITIALIZE_DETAIL, INITIALIZE_DETAIL_SUCCESS, INITIALIZE_DETAIL_FAILURE] = createRequestActionTypes('news/INITIALIZE_DETAIL');
 
-export const {news: {initializeList, initializeDetail}} = createActions({
-  [INITIALIZE_LIST]: type => type,
-  [INITIALIZE_DETAIL]: type => type
+export const {news: {initializeList, getSearch, initializeBookmark, initializeDetail}} = createActions({
+  [INITIALIZE_LIST]: data => data,
+  [GET_SEARCH]: data => data,
+  [INITIALIZE_BOOKMARK]: data => data,
+  [INITIALIZE_DETAIL]: data => data
 });
 
 const initializeListSaga = createRequestSaga(INITIALIZE_LIST, getNewsList);
+const getSearchSaga = createRequestSaga(GET_SEARCH, getNewsList);
+const initializeBookmarkSaga = createRequestSaga(INITIALIZE_BOOKMARK, getNewsList);
 const initializeDetailSaga = createRequestSaga(INITIALIZE_DETAIL, getNewsDetail);
 
 export function* listSaga() {
   yield takeLatest(INITIALIZE_LIST, initializeListSaga);
+  yield takeLatest(GET_SEARCH, getSearchSaga);
+  yield takeLatest(INITIALIZE_BOOKMARK, initializeBookmarkSaga);
   yield takeLatest(INITIALIZE_DETAIL, initializeDetailSaga);
 };
 
 const news = handleActions({
   [INITIALIZE_LIST_SUCCESS]: (state, {payload: list}) => {
     return produce(state, draft => {
-      draft.list = list
+      draft.list.init = true;
+      draft.list.data = list;
     });
   },
   [INITIALIZE_LIST_FAILURE]: (state, {payload: error}) => {
     return produce(state, draft => {
+      draft.list.init = true;
       draft.error = error
     });
   },
-  [INITIALIZE_DETAIL]: (state, {payload: data}) => {
+  [GET_SEARCH]: (state, {payload: keyword}) => {
     return produce(state, draft => {
-      draft.detail = {...state.detail, ...data}
+      draft.search.keyword = keyword;
+    });
+  },
+  [GET_SEARCH_SUCCESS]: (state, {payload: list}) => {
+    return produce(state, draft => {
+      draft.search.data = list;
+    });
+  },
+  [GET_SEARCH_FAILURE]: (state, {payload: error}) => {
+    return produce(state, draft => {
+      draft.error = error
+    });
+  },
+  [INITIALIZE_BOOKMARK_SUCCESS]: (state, {payload: list}) => {
+    console.log(list)
+    return produce(state, draft => {
+      draft.bookmark.init = true;
+      draft.bookmark.data = list;
+    });
+  },
+  [INITIALIZE_BOOKMARK_FAILURE]: (state, {payload: error}) => {
+    return produce(state, draft => {
+      draft.bookmark.init = true;
+      draft.error = error
+    });
+  },
+  [INITIALIZE_DETAIL]: (state, {payload: detail}) => {
+    return produce(state, draft => {
+      draft.detail.data = detail;
     });
   },
   [INITIALIZE_DETAIL_SUCCESS]: (state, {payload: detail}) => {
     return produce(state, draft => {
-      draft.detail = {...state.detail, ...detail}
+      draft.detail.init = true;
+      draft.detail.data = {...state.detail.data, ...detail};
     });
   },
   [INITIALIZE_DETAIL_FAILURE]: (state, {payload: error}) => {
     return produce(state, draft => {
+      draft.detail.init = true;
       draft.error = error
     });
   },

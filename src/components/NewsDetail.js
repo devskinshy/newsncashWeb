@@ -59,7 +59,6 @@ const TitleStyled = styled(Typography)(({theme}) => ({
 }))
 
 const NewsDetail = ({content}) => {
-  console.log(content)
   const {
     tl,
     nm,
@@ -68,6 +67,7 @@ const NewsDetail = ({content}) => {
     provider_link_page,
     naver_link_page
   } = content;
+
   return (
     <RootStyled>
       <TitleBoxStyled>

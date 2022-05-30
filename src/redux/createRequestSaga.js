@@ -27,7 +27,7 @@ const createRequestSaga = (type, request) => {
       yield put(successAction(response.data));
     } catch (e) {
       console.error(e)
-      const message = (e.response && e.response.data) || {rd : 'Something went wrong'}
+      const message = {rd : 'Something went wrong', ...e?.response?.data}
       yield put(failureAction(message))
     }
 

@@ -5,8 +5,6 @@ import {themeOptions} from "../config/theme";
 const ThemePreset = ({children}) => {
   const theme = createTheme(themeOptions);
 
-  console.log(theme)
-
   return (
     <StyledEngineProvider>
       <ThemeProvider theme={theme}>
