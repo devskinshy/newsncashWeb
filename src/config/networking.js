@@ -1,4 +1,4 @@
-import {getSearch, initializeBookmark, initializeDetail, initializeList} from "../redux/modules/news";
+import {emptyBookmark, getSearch, initializeBookmark, initializeDetail, initializeList} from "../redux/modules/news";
 
 export const networking = (dispatch) => ({
   'LIST_INIT': (data) => {
@@ -11,7 +11,12 @@ export const networking = (dispatch) => ({
   },
   'BOOKMARK_INIT': (data) => {
     console.log('BOOKMARK_INIT', data);
-    dispatch(initializeBookmark(data))
+    if(!data.idsk.length) {
+      dispatch(emptyBookmark(data))
+    } else {
+      dispatch(initializeBookmark(data))
+    }
+
   },
   'DETAIL_INIT': (data) => {
     console.log('DETAIL_INIT', data);

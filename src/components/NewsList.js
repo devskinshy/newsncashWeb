@@ -5,6 +5,7 @@ import {styled} from "@mui/material/styles";
 import Empty from "./Empty";
 
 const RootStyled = styled(Stack)(({theme}) => ({
+  flex: 1,
   padding: theme.spacing(2)
 }))
 
