@@ -38,6 +38,9 @@ export const {news: {initializeList, getSearch, emptyBookmark, initializeBookmar
   [INITIALIZE_DETAIL]: data => data
 });
 
+console.log(typeof initializeList, getSearch, emptyBookmark, initializeBookmark, initializeDetail);
+console.log(typeof INITIALIZE_LIST, INITIALIZE_LIST,INITIALIZE_LIST_SUCCESS, INITIALIZE_LIST_FAILURE);
+
 const initializeListSaga = createRequestSaga(INITIALIZE_LIST, getNewsList);
 const getSearchSaga = createRequestSaga(GET_SEARCH, getNewsList);
 const initializeBookmarkSaga = createRequestSaga(INITIALIZE_BOOKMARK, getNewsList);
