@@ -16,10 +16,9 @@ export const networking = (dispatch) => ({
     } else {
       dispatch(initializeBookmark(data))
     }
-
   },
   'DETAIL_INIT': (data) => {
     console.log('DETAIL_INIT', data);
     dispatch(initializeDetail(data));
-  },
+  }
 })
