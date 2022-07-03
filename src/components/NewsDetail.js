@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Divider, Stack, Typography, Link} from "@mui/material";
+import {Box, Divider, Stack, Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import {createNews} from "../utils/news";
 
@@ -86,9 +86,6 @@ const NewsDetail = ({content}) => {
       <LinkBoxStyled spacing={1}>
         <Typography variant={'subtitle2'}>Copyright ⓒ {nm}. All rights reserved. 무단 전재 및 재배포 금지</Typography>
         <a target="_blank" href={provider_link_page}>언론사에서 보기 ></a>      
-        {/* <Link target="_blank" to={provider_link_page} onClick={preventDefault} variant="contained">
-          언론사에서 보기 >
-        </Link> */}
       </LinkBoxStyled>
     </RootStyled>
   );
