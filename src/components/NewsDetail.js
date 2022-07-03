@@ -85,11 +85,9 @@ const NewsDetail = ({content}) => {
       </ContentBoxStyled>
       <LinkBoxStyled spacing={1}>
         <Typography variant={'subtitle2'}>Copyright ⓒ {nm}. All rights reserved. 무단 전재 및 재배포 금지</Typography>
-        <Typography variant={'button'}>
-          <Link target="_blank" to={provider_link_page} onClick={preventDefault}>
-            언론사에서 보기 >
-          </Link>
-        </Typography>
+        <Link target="_blank" to={provider_link_page} onClick={preventDefault}>
+          언론사에서 보기 >
+        </Link>
       </LinkBoxStyled>
     </RootStyled>
   );
