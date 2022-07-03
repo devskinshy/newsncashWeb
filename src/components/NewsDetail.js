@@ -86,11 +86,7 @@ const NewsDetail = ({content}) => {
         <Typography variant={'subtitle2'}>Copyright ⓒ {nm}. All rights reserved. 무단 전재 및 재배포 금지</Typography>
         <Typography variant={'button'}>
           언론사에서 보기 >
-          <Link target="_blank" href={provider_link_page} rel="noreferrer">
-          View Link
-          </Link>
         </Typography>
-        
       </LinkBoxStyled>
     </RootStyled>
   );
